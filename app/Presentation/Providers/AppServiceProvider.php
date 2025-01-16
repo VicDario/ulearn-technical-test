@@ -4,6 +4,10 @@ namespace Presentation\Providers;
 
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
+use Domain\Repositories\UserRepositoryInterface;
+use Domain\Services\AuthServiceInterface;
+use Infrastructure\Auth\LaravelAuthService;
+use Infrastructure\Repositories\EloquentUserRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(UserRepositoryInterface::class, EloquentUserRepository::class);
-        $this->app->bind(AuthServiceInterface::class, SanctumAuthService::class);
+        $this->app->bind(AuthServiceInterface::class, LaravelAuthService::class);
     }
 
     /**
