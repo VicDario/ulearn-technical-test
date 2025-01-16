@@ -2,6 +2,8 @@
 
 namespace Presentation\Http\Controllers\Auth;
 
+use Domain\DTOs\LoginRequestDTO;
+use Domain\Services\AuthServiceInterface;
 use Presentation\Http\Controllers\Controller;
 use Presentation\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
@@ -10,9 +12,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
+use Infrastructure\UseCases\LoginUserUseCase;
 
 class AuthenticatedSessionController extends Controller
 {
+    public function __construct(
+        private LoginUserUseCase $loginUseCase,
+        private AuthServiceInterface $authService
+    ) {}
+
     /**
      * Display the login view.
      */
@@ -29,7 +37,16 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        $loginRequest = new LoginRequestDTO(
+            $request->email,
+            $request->password
+        );
+
+        $response = $this->loginUseCase->execute($loginRequest);
+        if (!$response->success)
+            return back()->withErrors([
+                'email' => $response->error ?? 'The provided credentials are incorrect.',
+            ]);
 
         $request->session()->regenerate();
 
