@@ -3,6 +3,8 @@
 namespace Presentation\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Infrastructure\Database\Models\User;
 
 class RegisterRequest extends FormRequest
 {
@@ -22,6 +24,7 @@ class RegisterRequest extends FormRequest
                 'lowercase',
                 'email',
                 'max:255',
+                Rule::unique(User::class),
             ],
             'password' => [
                 'required',
@@ -36,6 +39,7 @@ class RegisterRequest extends FormRequest
                 'min:8',
                 'max:15',
                 'regex:/^\+?[0-9]+$/',
+                Rule::unique(User::class),
             ],
         ];
     }
