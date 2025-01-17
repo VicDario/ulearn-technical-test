@@ -16,41 +16,37 @@ function handleImageError() {
 
 <template>
     <Head title="Ulern - Prueba Técnica" />
-    <div className="min-h-screen flex flex-col">
-        <main
-            className="flex-grow flex flex-col items-center justify-center p-4"
-        >
-            <div className="text-center mb-8">
-                <h1 className="text-3xl font-bold mb-4">
-                    Ulern - Prueba Técnica
-                </h1>
+    <div class="flex min-h-screen flex-col">
+        <main class="flex flex-grow flex-col items-center justify-center p-4">
+            <div class="mb-8 text-center">
+                <h1 class="mb-4 text-3xl font-bold">Ulern - Prueba Técnica</h1>
                 <p>
                     Hola, Soy Víctor Fernández y esta es mi prueba técnica para
                     Ulern
                 </p>
-                <div className="flex justify-center space-x-4 mt-4">
+                <div class="mt-4 flex justify-center space-x-4">
                     <Link
                         :href="route('login')"
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300"
+                        class="rounded bg-blue-500 px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-600"
                     >
                         Iniciar Sesión
                     </Link>
                     <Link
                         :href="route('register')"
-                        className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow transition duration-300"
+                        class="rounded border border-gray-400 bg-white px-4 py-2 font-semibold text-gray-800 shadow transition duration-300 hover:bg-gray-100"
                     >
                         Registrarse
                     </Link>
                 </div>
             </div>
 
-            <div className="mb-8">
+            <div class="mb-8">
                 <ApplicationLogo />
             </div>
         </main>
 
-        <footer className="py-4 text-center bg-gray-100">
-            <p className="text-sm text-gray-600">
+        <footer class="bg-gray-100 py-4 text-center">
+            <p class="text-sm text-gray-600">
                 Hecho con Laravel {{ props.laravelVersion }}.
             </p>
         </footer>
