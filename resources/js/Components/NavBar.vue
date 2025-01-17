@@ -19,7 +19,7 @@ import { Link } from '@inertiajs/vue3';
                         method="post"
                         as="button"
                     >
-                        Log Out
+                        Cerrar Sesión
                     </ResponsiveNavLink>
                 </div>
             </div>
