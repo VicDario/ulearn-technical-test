@@ -10,6 +10,7 @@ use Domain\Services\AuthServiceInterface;
 use Infrastructure\Mappers\UserMapper;
 use Infrastructure\Repositories\EloquentUserRepository;
 use Infrastructure\Services\LaravelAuthService;
+use Infrastructure\UseCases\GetUserUseCase;
 use Infrastructure\UseCases\LoginUseCase;
 use Infrastructure\UseCases\RegisterUserUseCase;
 
@@ -25,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(UserMapperInterface::class, UserMapper::class);
         $this->app->bind(LoginUseCase::class, LoginUseCase::class);
         $this->app->bind(RegisterUserUseCase::class, RegisterUserUseCase::class);
+        $this->app->bind(GetUserUseCase::class, GetUserUseCase::class);
     }
 
     /**
