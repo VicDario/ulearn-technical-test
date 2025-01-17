@@ -2,19 +2,19 @@
 
 namespace Presentation\Http\Controllers\Auth;
 
+use Domain\DTOs\RegisterRequestDTO;
 use Presentation\Http\Controllers\Controller;
-use Infrastructure\Database\Models\User;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
+use Infrastructure\UseCases\RegisterUserUseCase;
+use Presentation\Http\Requests\Auth\RegisterRequest;
 
 class RegisteredUserController extends Controller
 {
+
+    public function __construct(
+        private RegisterUserUseCase $registerUserUseCase,
+    ) {}
     /**
      * Display the registration view.
      */
@@ -28,24 +28,20 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(RegisterRequest $request): string
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        $validatedData = $request->validated();
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $registerDto = new RegisterRequestDTO(
+            name: $validatedData['name'],
+            lastname: $validatedData['lastname'],
+            email: $validatedData['email'],
+            phone: $validatedData['phone'],
+            password: $validatedData['password'],
+        );
 
-        event(new Registered($user));
+        $this->registerUserUseCase->execute($registerDto);
 
-        Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('login', absolute: false));
     }
 }
