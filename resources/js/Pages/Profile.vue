@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import DetailItem from '@/Components/DetailItem.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import { User } from '@/types';
 import { Head } from '@inertiajs/vue3';
 
 defineProps<{
