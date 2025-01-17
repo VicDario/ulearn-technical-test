@@ -45,7 +45,7 @@ const submit = () => {
                 <InputError class="mt-2" :message="form.errors.name" />
             </div>
 
-            <div>
+            <div class="mt-4">
                 <InputLabel for="lastname" value="Lastname" />
 
                 <TextInput
@@ -54,8 +54,7 @@ const submit = () => {
                     class="mt-1 block w-full"
                     v-model="form.lastname"
                     required
-                    autofocus
-                    autocomplete="lastname"
+                    autocomplete="family-name"
                 />
 
                 <InputError class="mt-2" :message="form.errors.name" />
@@ -81,11 +80,11 @@ const submit = () => {
 
                 <TextInput
                     id="phone"
-                    type="phone"
+                    type="tel"
                     class="mt-1 block w-full"
                     v-model="form.phone"
                     required
-                    autocomplete="phone"
+                    autocomplete="tel"
                 />
 
                 <InputError class="mt-2" :message="form.errors.email" />
