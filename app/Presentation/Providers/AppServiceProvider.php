@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Domain\Repositories\UserRepositoryInterface;
 use Domain\Services\AuthServiceInterface;
-use Infrastructure\Auth\LaravelAuthService;
 use Infrastructure\Repositories\EloquentUserRepository;
+use Infrastructure\Services\LaravelAuthService;
 
 class AppServiceProvider extends ServiceProvider
 {
