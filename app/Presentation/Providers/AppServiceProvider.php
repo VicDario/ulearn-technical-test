@@ -2,10 +2,12 @@
 
 namespace Presentation\Providers;
 
+use Domain\Mappers\UserMapperInterface;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Domain\Repositories\UserRepositoryInterface;
 use Domain\Services\AuthServiceInterface;
+use Infrastructure\Mappers\UserMapper;
 use Infrastructure\Repositories\EloquentUserRepository;
 use Infrastructure\Services\LaravelAuthService;
 use Infrastructure\UseCases\LoginUseCase;
@@ -20,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(UserRepositoryInterface::class, EloquentUserRepository::class);
         $this->app->bind(AuthServiceInterface::class, LaravelAuthService::class);
+        $this->app->bind(UserMapperInterface::class, UserMapper::class);
         $this->app->bind(LoginUseCase::class, LoginUseCase::class);
         $this->app->bind(RegisterUserUseCase::class, RegisterUserUseCase::class);
     }
