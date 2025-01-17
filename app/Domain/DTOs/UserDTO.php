@@ -2,8 +2,6 @@
 
 namespace Domain\DTOs;
 
-use Domain\Entities\UserEntity;
-
 class UserDTO
 {
     public function __construct(
