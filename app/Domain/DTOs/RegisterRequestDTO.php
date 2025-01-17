@@ -9,7 +9,7 @@ class RegisterRequestDTO
         public readonly string $lastname,
         public readonly string $phone,
         public readonly string $email,
-        public readonly string $password
+        public string $password
     ) {}
 
 }
