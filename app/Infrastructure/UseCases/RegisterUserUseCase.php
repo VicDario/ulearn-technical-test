@@ -6,7 +6,7 @@ use Domain\DTOs\RegisterRequestDTO;
 use Domain\Repositories\UserRepositoryInterface;
 use Domain\Entities\UserEntity;
 use Domain\Services\AuthServiceInterface;
-use EmailValidator;
+use Infrastructure\Validators\EmailValidator;
 
 class RegisterUserUseCase
 {
