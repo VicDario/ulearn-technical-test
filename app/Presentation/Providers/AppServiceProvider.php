@@ -8,6 +8,8 @@ use Domain\Repositories\UserRepositoryInterface;
 use Domain\Services\AuthServiceInterface;
 use Infrastructure\Repositories\EloquentUserRepository;
 use Infrastructure\Services\LaravelAuthService;
+use Infrastructure\UseCases\LoginUseCase;
+use Infrastructure\UseCases\RegisterUserUseCase;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,6 +20,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(UserRepositoryInterface::class, EloquentUserRepository::class);
         $this->app->bind(AuthServiceInterface::class, LaravelAuthService::class);
+        $this->app->bind(LoginUseCase::class, LoginUseCase::class);
+        $this->app->bind(RegisterUserUseCase::class, RegisterUserUseCase::class);
     }
 
     /**
