@@ -3,11 +3,17 @@
 namespace Infrastructure\Repositories;
 
 use Domain\Entities\UserEntity;
+use Domain\Mappers\UserMapperInterface;
 use Domain\Repositories\UserRepositoryInterface;
 use Infrastructure\Database\Models\User;
 
 class EloquentUserRepository implements UserRepositoryInterface
 {
+    public function __construct(
+        private UserMapperInterface $userMapper,
+    )
+    {}
+
     public function save(UserEntity $user): UserEntity
     {
         $model = User::create([
@@ -18,23 +24,12 @@ class EloquentUserRepository implements UserRepositoryInterface
             'password' => $user->getPassword(),
         ]);
 
-        return $this->mapToEntity($model);
+        return $this->userMapper->fromModelToEntity($model);
     }
 
     public function findByEmail(string $email): ?UserEntity
     {
         $model = User::where('email', $email)->first();
-        return $model ? $this->mapToEntity($model) : null;
-    }
-
-    private function mapToEntity(User $model): UserEntity
-    {
-        return new UserEntity(
-            $model->name,
-            $model->lastname,
-            $model->phone,
-            $model->email,
-            $model->password
-        );
+        return $model ? $this->userMapper->fromModelToEntity($model) : null;
     }
 }

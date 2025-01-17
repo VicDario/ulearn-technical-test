@@ -5,6 +5,7 @@ namespace Infrastructure\UseCases;
 use Domain\DTOs\RegisterRequestDTO;
 use Domain\Repositories\UserRepositoryInterface;
 use Domain\Entities\UserEntity;
+use Domain\Mappers\UserMapperInterface;
 use Domain\Services\AuthServiceInterface;
 use Infrastructure\Validators\EmailValidator;
 
@@ -12,7 +13,8 @@ class RegisterUserUseCase
 {
     public function __construct(
         private UserRepositoryInterface $userRepository,
-        private AuthServiceInterface $authService
+        private AuthServiceInterface $authService,
+        private UserMapperInterface $userMapper,
     ) {}
 
     public function execute(RegisterRequestDTO $request): bool
@@ -23,14 +25,8 @@ class RegisterUserUseCase
             if ($registeredUser)
                 throw new \DomainException('Email already exists');
 
-            $hashedPassword = $this->authService->hashPassword($request->password);
-            $user = new UserEntity(
-                $request->name,
-                $request->lastname,
-                $request->phone,
-                $request->email,
-                $hashedPassword,
-            );
+            $request->password = $this->authService->hashPassword($request->password);
+            $user = $this->userMapper->fromRegisterDTOToEntity($request);
 
             $this->userRepository->save($user);
 
