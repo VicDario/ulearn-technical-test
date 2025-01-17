@@ -11,8 +11,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/profile', function () {
-    return Inertia::render('Profile');
-})->middleware(['auth', 'verified'])->name('profile');
+Route::get('/profile', [ProfileController::class, 'show'])
+    ->middleware(['auth', 'verified'])
+    ->name('profile');
 
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';
