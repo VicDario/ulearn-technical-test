@@ -12,10 +12,10 @@ use Presentation\Http\Requests\Auth\RegisterRequest;
 
 class RegisteredUserController extends Controller
 {
-
     public function __construct(
         private RegisterUserUseCase $registerUserUseCase,
     ) {}
+
     /**
      * Display the registration view.
      */
