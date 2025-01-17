@@ -15,6 +15,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
             'email' => [
                 'required',
                 'string',
@@ -46,6 +47,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name.required' => 'The name field is mandatory.',
+            'lastname.required' => 'The lastname field is mandatory.',
             'email.required' => 'The email field is mandatory.',
             'email.email' => 'The email must be a valid email address.',
             'email.unique' => 'This email is already in use.',
