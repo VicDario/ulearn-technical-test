@@ -4,28 +4,16 @@ namespace Domain\Entities;
 
 class UserEntity
 {
-    private int $id;
-    private string $name;
-    private string $lastname;
-    private string $phone;
-    private string $email;
-    private string $password;
-
     public function __construct(
-        string $name,
-        string $lastname,
-        string $phone,
-        string $email,
-        string $password
-    ) {
-        $this->name = $name;
-        $this->lastname = $lastname;
-        $this->phone = $phone;
-        $this->email = $email;
-        $this->password = $password;
-    }
+        private ?int $id = null,
+        private string $name = '',
+        private string $lastname = '',
+        private string $phone = '',
+        private string $email = '',
+        private string $password = ''
+    ) {}
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -45,13 +33,49 @@ class UserEntity
         return $this->phone;
     }
 
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
     public function getEmail(): string
     {
         return $this->email;
     }
 
-    public function getPassword(): string
+    public function setId(string $name): self
     {
-        return $this->password;
+        $this->name = $name;
+        return $this;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    public function setLastname(string $lastname): self
+    {
+        $this->lastname = $lastname;
+        return $this;
+    }
+
+    public function setPhone(string $phone): self
+    {
+        $this->phone = $phone;
+        return $this;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+        return $this;
     }
 }
