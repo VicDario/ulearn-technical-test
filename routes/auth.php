@@ -2,7 +2,6 @@
 
 use Presentation\Http\Controllers\Auth\AuthenticatedSessionController;
 use Presentation\Http\Controllers\Auth\ConfirmablePasswordController;
-use Presentation\Http\Controllers\Auth\EmailVerificationNotificationController;
 use Presentation\Http\Controllers\Auth\EmailVerificationPromptController;
 use Presentation\Http\Controllers\Auth\NewPasswordController;
 use Presentation\Http\Controllers\Auth\PasswordController;
@@ -36,17 +35,6 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('verify-email', EmailVerificationPromptController::class)
-        ->name('verification.notice');
-
-    Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
-        ->middleware(['signed', 'throttle:6,1'])
-        ->name('verification.verify');
-
-    Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-        ->middleware('throttle:6,1')
-        ->name('verification.send');
-
     Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
         ->name('password.confirm');
 
