@@ -58,7 +58,7 @@ defineProps<{
                             />
                             <DetailItem
                                 title="Número de teléfono"
-                                :value="user.phone"
+                                :value="user.phone ?? 'No disponible'"
                                 :isStriped="true"
                             />
                         </dl>
