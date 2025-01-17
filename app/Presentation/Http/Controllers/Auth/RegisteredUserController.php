@@ -43,6 +43,6 @@ class RegisteredUserController extends Controller
 
         $this->registerUserUseCase->execute($registerDto);
 
-        return redirect()->intended(route('login', absolute: false));
+        return redirect()->intended(route('login', absolute: false))->with('status', 'User registered successfully');
     }
 }
