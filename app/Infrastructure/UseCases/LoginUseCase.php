@@ -5,14 +5,12 @@ namespace Infrastructure\UseCases;
 use Domain\DTOs\LoginRequestDTO;
 use Domain\DTOs\LoginResponseDTO;
 use Domain\DTOs\UserDTO;
-use Domain\Repositories\UserRepositoryInterface;
 use Domain\Services\AuthServiceInterface;
-use EmailValidator;
+use Infrastructure\Validators\EmailValidator;
 
-class LoginUserUseCase
+class LoginUseCase
 {
     public function __construct(
-        private UserRepositoryInterface $userRepository,
         private AuthServiceInterface $authService
     ) {}
 
