@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import DetailItem from '@/Components/DetailItem.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, usePage } from '@inertiajs/vue3';
+import { Head } from '@inertiajs/vue3';
 
-const user = usePage().props.auth.user;
+defineProps<{
+    user: User;
+}>();
 </script>
 
 <template>
