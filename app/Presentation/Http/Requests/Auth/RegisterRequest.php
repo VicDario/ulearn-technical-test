@@ -34,7 +34,7 @@ class RegisterRequest extends FormRequest
                 'string',
                 'min:8',
                 'max:15',
-                'regex:/^\+?[0-9]$/',
+                'regex:/^\+?[0-9]+$/',
             ],
         ];
     }
