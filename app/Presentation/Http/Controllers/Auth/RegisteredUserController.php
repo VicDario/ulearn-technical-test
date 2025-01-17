@@ -3,6 +3,7 @@
 namespace Presentation\Http\Controllers\Auth;
 
 use Domain\DTOs\RegisterRequestDTO;
+use Illuminate\Http\RedirectResponse;
 use Presentation\Http\Controllers\Controller;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -28,7 +29,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(RegisterRequest $request): string
+    public function store(RegisterRequest $request): RedirectResponse
     {
         $validatedData = $request->validated();
 
@@ -42,6 +43,6 @@ class RegisteredUserController extends Controller
 
         $this->registerUserUseCase->execute($registerDto);
 
-        return redirect(route('login', absolute: false));
+        return redirect()->intended(route('login', absolute: false));
     }
 }
