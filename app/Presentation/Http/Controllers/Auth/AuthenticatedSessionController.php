@@ -3,7 +3,6 @@
 namespace Presentation\Http\Controllers\Auth;
 
 use Domain\DTOs\LoginRequestDTO;
-use Domain\Services\AuthServiceInterface;
 use Presentation\Http\Controllers\Controller;
 use Presentation\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
@@ -12,13 +11,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
-use Infrastructure\UseCases\LoginUserUseCase;
+use Infrastructure\UseCases\LoginUseCase;
 
 class AuthenticatedSessionController extends Controller
 {
     public function __construct(
-        private LoginUserUseCase $loginUseCase,
-        private AuthServiceInterface $authService
+        private LoginUseCase $loginUseCase
     ) {}
 
     /**
