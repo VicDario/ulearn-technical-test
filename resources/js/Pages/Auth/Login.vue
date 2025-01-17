@@ -45,7 +45,7 @@ const registeredMessage = computed<string | null>(() => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel labelFor="email" value="Email" />
+                <InputLabel for="email" value="Email" />
                 <TextInput
                     id="email"
                     type="email"
