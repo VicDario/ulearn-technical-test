@@ -4,7 +4,6 @@ namespace Infrastructure\UseCases;
 
 use Domain\DTOs\LoginRequestDTO;
 use Domain\DTOs\LoginResponseDTO;
-use Domain\DTOs\UserDTO;
 use Domain\Mappers\UserMapperInterface;
 use Domain\Services\AuthServiceInterface;
 use Infrastructure\Validators\EmailValidator;
