@@ -1,4 +1,8 @@
-## Instructions
+# Ulern - Prueba Técnica
+
+Este proyecto fue creado como prueba técnica para Ulern.
+
+## Instrucciones
 Objetivo de la prueba:
 Implementar un sistema de login y registro utilizando las siguientes tecnologías:
 - Backend: Laravel 11
