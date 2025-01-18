@@ -77,3 +77,6 @@ Finalmente, ejecuta el servidor de desarrollo. Usa el siguiente comando para ini
 ```bash
 composer run dev
 ```
+
+7. **Ingresar al proyecto**
+Podras ingresar con aqui http://127.0.0.1:8000
